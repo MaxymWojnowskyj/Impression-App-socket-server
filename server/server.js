@@ -25,7 +25,9 @@ io.on("connection", socket => {
  
 
     function createFriendGame(data) {
+        console.log('creating friend game for: ', data)
         data = JSON.parse(data)
+        console.log('parsed data: ', data)
         // user = {'iconURL': 'http://__.jpg', 'userName':'testuser01'}
         data['user']['clientId'] = client.id 
         let user = data['user']
