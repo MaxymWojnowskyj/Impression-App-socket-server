@@ -1,12 +1,8 @@
 // Source code from https://youtu.be/ppcBIHv_ZPs
 
-const io = require('socket.io')(3000, {
-    cors: {
-        origin: ["http://localhost:8080"]
-    }
-})
+const io = require('socket.io')();
 const { initGame } = require('./game');
-const { makeid } = require('./utils')
+const { makeid } = require('./utils');
 
 // gameRooms contains key: gameCode. values: list of players, current score
 // gameRooms = {'a4b5k1': {players: [], score: {}}, 
