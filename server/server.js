@@ -1,7 +1,7 @@
 // Source code from https://youtu.be/ppcBIHv_ZPs
 
 const io = require('socket.io')();
-io.set('transports', ['websocket']);
+//io.set('transports', ['websocket']); //at=error code=H10 desc="App crashed" method=GET path="/socket.io/?EIO=4&transport=polling"
 const { initGame } = require('./game');
 const { makeid } = require('./utils');
 
@@ -37,6 +37,10 @@ io.on("connection", socket => {
     socket.on("getPlayers", getFriendPlayers)
     socket.on("cancelGame", cancelFriendGame)
     socket.on("leftGame", leftFriendGame)
+    
+     socket.on('disconnect', function() {
+      console.log('player disconnected');
+     }
 
 
 
