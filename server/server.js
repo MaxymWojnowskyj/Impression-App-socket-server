@@ -13,7 +13,7 @@ const gameRooms = {}
 
 io.on("connection", socket => {
     console.log("player connected: ", socket.id) //id of connected player
-
+    client.emit('createdFriendGame', '123test')
     socket.on("createFriendGame", data => {
         console.log('creating friend game for: ', data)
         data = JSON.parse(data)
