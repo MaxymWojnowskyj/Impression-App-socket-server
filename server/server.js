@@ -1,6 +1,7 @@
 // Source code from https://youtu.be/ppcBIHv_ZPs
 
 const io = require('socket.io')();
+io.set('transports', ['websocket']);
 const { initGame } = require('./game');
 const { makeid } = require('./utils');
 
