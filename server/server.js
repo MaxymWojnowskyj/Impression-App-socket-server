@@ -14,7 +14,24 @@ const gameRooms = {}
 io.on("connection", socket => {
     console.log("player connected: ", socket.id) //id of connected player
 
-    socket.on("createFriendGame", createFriendGame)
+    socket.on("createFriendGame", data => {
+        console.log('creating friend game for: ', data)
+        data = JSON.parse(data)
+        console.log('parsed data: ', data)
+        // user = {'iconURL': 'http://__.jpg', 'userName':'testuser01'}
+        data['user']['clientId'] = client.id 
+        let user = data['user']
+
+        let roomName = makeid(5);
+
+        // add to the gameRooms a user and gameRoom object
+        gameRooms[roomName] = {'players':[user], 'score': {}}
+        client.join(roomName)
+        console.log(`User: ${user['userName']} w/ clientID: ${client.id} has created gameRoom: ${roomName}`)
+        // emits the call back to the client that sent the createGame socket
+        client.emit('createdFriendGame', roomName)
+    })
+    
     socket.on("joinFriendGame", joinFriendGame)
     socket.on("getPlayers", getFriendPlayers)
     socket.on("cancelGame", cancelFriendGame)
