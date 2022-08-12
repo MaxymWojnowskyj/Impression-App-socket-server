@@ -15,7 +15,8 @@ const gameRooms = {}
 io.on("connection", socket => {
     console.log("player connected: ", socket.id) //id of connected player
     //client.emit('createdFriendGame', '123test') server crashes when I uncomment this
-    socket.on("createFriendGame", data => {
+    socket.on("createFriendGame", createFriendGame)
+    /*socket.on("createFriendGame", data => {
         console.log('creating friend game for: ', data)
         data = JSON.parse(data)
         console.log('parsed data: ', data)
@@ -31,7 +32,7 @@ io.on("connection", socket => {
         console.log(`User: ${user['userName']} w/ clientID: ${client.id} has created gameRoom: ${roomName}`)
         // emits the call back to the client that sent the createGame socket
         client.emit('createdFriendGame', roomName)
-    })
+    })*/
     
     socket.on("joinFriendGame", joinFriendGame)
     socket.on("getPlayers", getFriendPlayers)
